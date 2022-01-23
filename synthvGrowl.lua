@@ -1,7 +1,6 @@
 function getClientInfo()
     return {
         name = "SynthV Growl",
-        category = "Test",
         author = "PNCSS",
         versionNumber = 1,
         minEditorVersion = 0
