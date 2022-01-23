@@ -1,0 +1,13 @@
+{
+    "Lua.diagnostics.globals": [
+        "getActualStartAndEndPosition",
+        "makeActualDuration",
+        "makePositionArray",
+        "getActualEndPosition",
+        "getActualStartPosition",
+        "makeDurationUnitBasedPercent",
+        "getDataObject",
+        "coreRoutine",
+        "makeForm"
+    ]
+}
