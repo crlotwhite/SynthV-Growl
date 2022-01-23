@@ -8,6 +8,63 @@ function getClientInfo()
     }
 end
 
+function getTranslations(langCode)
+    if langCode == "ko-kr" then
+        return {
+            {"End of Growling", "Growl 작업 완료"},
+            {"Successful!!", "작업을 성공적으로 마무리했습니다."},
+            {"Selected Notes is Empty", "선택한 노트가 없습니다."},
+            {"You have to select at least one note.", "적어도 하나의 노트를 선택해주세요."},
+            {"SynthV Growl", "SynthV Growl"},
+            {"Apply Growl to selected notes.", "선택한 노트에 Growl을 적용합니다."},
+            {"Start Position", "시작 지점"},
+            {"End Position", "끝 지점"},
+            {"Growl Depth", "Growl 깊이"},
+            {"Pitch frequency 1/N", "피치 간격 1/N"},
+        }
+    elseif langCode == "zh-cn" then
+        return {
+            {"End of Growling", "咆哮工作完成"},
+            {"Successful!!", "您已成功完成作业。"},
+            {"Selected Notes is Empty", "没有选择笔记。"},
+            {"You have to select at least one note.", "请选择至少一个注释。"},
+            {"SynthV Growl", "SynthV Growl"},
+            {"Apply Growl to selected notes.", "将咆哮应用于选定的音符。"},
+            {"Start Position", "初始点"},
+            {"End Position", "终点"},
+            {"Growl Depth", "咆哮深度"},
+            {"Pitch frequency 1/N", "Pitch 间距 1/N"},
+          }
+    elseif langCode == "ja-jp" then
+        return {
+            {"End of Growling", "Growlタスクが完了しました"},
+            {"Successful!!", "作業を正常に終了しました。"},
+            {"Selected Notes is Empty", "作業を正常に終了しました。"},
+            {"You have to select at least one note.", "少なくとも1つのノートを選択してください。"},
+            {"SynthV Growl", "SynthV Growl"},
+            {"Apply Growl to selected notes.", "選択したノートにGrowlを適用します。"},
+            {"Start Position", "始点"},
+            {"End Position", "終点"},
+            {"Growl Depth", "Growl 深さ"},
+            {"Pitch frequency 1/N", "ピッチ間隔 1/N"},
+          }
+    elseif langCode == "zh-tw" then
+        return {
+            {"End of Growling", "咆哮工作完成"},
+            {"Successful!!", "您已成功完成作業。"},
+            {"Selected Notes is Empty", "沒有選擇筆記。"},
+            {"You have to select at least one note.", "請選擇至少一個註釋。"},
+            {"SynthV Growl", "SynthV Growl"},
+            {"Apply Growl to selected notes.", "將咆哮應用於選定的音符。"},
+            {"Start Position", "初始點"},
+            {"End Position", "終點"},
+            {"Growl Depth", "咆哮深度"},
+            {"Pitch frequency 1/N", "Pitch 間距 1/N"},
+          }
+    end
+    return {}
+  end
+
 -- Wrapper function to know the flow of code
 function main()
     --[[
@@ -19,7 +76,7 @@ function main()
         local formResult = SV:showCustomDialog(makeForm())
         if (formResult.status) then
             coreRoutine(formResult)
-            SV:showMessageBox(SV:T("End of Growl"), SV:T("Successful!!"))
+            SV:showMessageBox(SV:T("End of Growling"), SV:T("Successful!!"))
         end
     end
     SV:finish()
@@ -39,11 +96,11 @@ end
 function makeForm() 
     local form = {
         title = SV:T("SynthV Growl"),
-        message = SV:T("Apply Growl to selected notes.\n Select range and growl value"),
+        message = SV:T("Apply Growl to selected notes."),
         buttons = "OkCancel",
         widgets = {
             {
-                name = SV:T("startPos"),
+                name = "startPos",
                 type = "Slider",
                 label = SV:T("Start Position"),
                 format = "%1.1f",
@@ -53,7 +110,7 @@ function makeForm()
                 default = 0
             },
             {
-                name = SV:T("endPos"),
+                name = "endPos",
                 type = "Slider",
                 label = SV:T("End Position"),
                 format = "%1.1f",
@@ -63,7 +120,7 @@ function makeForm()
                 default = 100
             },
             {
-                name = SV:T("depth"),
+                name = "depth",
                 type = "Slider",
                 label = SV:T("Growl Depth"),
                 format = "%1.1f",
@@ -73,7 +130,7 @@ function makeForm()
                 default = 90
             },
             {
-                name = SV:T("frequency"),
+                name = "frequency",
                 type = "Slider",
                 label = SV:T("Pitch frequency 1/N"),
                 format = "%1.0f",
