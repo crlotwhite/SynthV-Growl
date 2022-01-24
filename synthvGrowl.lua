@@ -24,15 +24,15 @@ function getTranslations(langCode)
     elseif langCode == "zh-cn" then
         return {
             {"End of Growling", "咆哮工作完成"},
-            {"Successful!!", "您已成功完成作业。"},
-            {"Selected Notes is Empty", "没有选择笔记。"},
-            {"You have to select at least one note.", "请选择至少一个注释。"},
+            {"Successful!!", "已成功完成工作。"},
+            {"Selected Notes is Empty", "没有选择音符。"},
+            {"You have to select at least one note.", "请选择至少一个音符。"},
             {"SynthV Growl", "SynthV Growl"},
-            {"Apply Growl to selected notes.", "将咆哮应用于选定的音符。"},
-            {"Start Position", "初始点"},
+            {"Apply Growl to selected notes.", "将咆哮应用于选择的音符。"},
+            {"Start Position", "起点"},
             {"End Position", "终点"},
             {"Growl Depth", "咆哮深度"},
-            {"Pitch frequency 1/N", "Pitch 间距 1/N"},
+            {"Pitch frequency 1/N", "音高间距 1/N"},
           }
     elseif langCode == "ja-jp" then
         return {
@@ -50,15 +50,15 @@ function getTranslations(langCode)
     elseif langCode == "zh-tw" then
         return {
             {"End of Growling", "咆哮工作完成"},
-            {"Successful!!", "您已成功完成作業。"},
-            {"Selected Notes is Empty", "沒有選擇筆記。"},
-            {"You have to select at least one note.", "請選擇至少一個註釋。"},
+            {"Successful!!", "已成功完成工作。"},
+            {"Selected Notes is Empty", "沒有選取音符。"},
+            {"You have to select at least one note.", "請選取至少一個音符。"},
             {"SynthV Growl", "SynthV Growl"},
-            {"Apply Growl to selected notes.", "將咆哮應用於選定的音符。"},
-            {"Start Position", "初始點"},
+            {"Apply Growl to selected notes.", "將咆哮應用於選取的音符。"},
+            {"Start Position", "起點"},
             {"End Position", "終點"},
             {"Growl Depth", "咆哮深度"},
-            {"Pitch frequency 1/N", "Pitch 間距 1/N"},
+            {"Pitch frequency 1/N", "音高間距 1/N"},
           }
     end
     return {}
