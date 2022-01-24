@@ -1,7 +1,7 @@
 function getClientInfo() {
     return {
         "name": "SynthV Growl",
-        "category": "old_version"
+        "category": "old_version",
         "author": "PNCSS",
         "versionNumber": 1,
         "minEditorVersion": 0
