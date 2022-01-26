@@ -20,6 +20,8 @@ function getTranslations(langCode)
             {"End Position", "끝 지점"},
             {"Growl Depth", "Growl 깊이"},
             {"Pitch frequency 1/N", "피치 간격 1/N"},
+            {"Invalid Value", "경고 - 잘못된 값"},
+            {"Start Position is bigger than End Position", "시작 지점이 끝 지점보다 큽니다."},
         }
     elseif langCode == "zh-cn" then
         return {
@@ -33,6 +35,8 @@ function getTranslations(langCode)
             {"End Position", "终点"},
             {"Growl Depth", "咆哮深度"},
             {"Pitch frequency 1/N", "音高间距 1/N"},
+            {"Invalid Value", "警告 - 无效值"},
+            {"Start Position is bigger than End Position", "起点大于终点。"},
           }
     elseif langCode == "ja-jp" then
         return {
@@ -46,6 +50,8 @@ function getTranslations(langCode)
             {"End Position", "終点"},
             {"Growl Depth", "Growl 深さ"},
             {"Pitch frequency 1/N", "ピッチ間隔 1/N"},
+            {"Invalid Value", "警告 - 間違った値"},
+            {"Start Position is bigger than End Position", "始点が終点より大きいです。"},
           }
     elseif langCode == "zh-tw" then
         return {
@@ -59,6 +65,8 @@ function getTranslations(langCode)
             {"End Position", "終點"},
             {"Growl Depth", "咆哮深度"},
             {"Pitch frequency 1/N", "音高間距 1/N"},
+            {"Invalid Value", "警告 - 無效值"},
+            {"Start Position is bigger than End Position", "起點大於終點。"},
           }
     end
     return {}
@@ -73,7 +81,7 @@ function main()
     ]]
     if validateBeforeStarting() then
         local formResult = SV:showCustomDialog(makeForm())
-        if (formResult.status) then
+        if (formResult.status and formValidation(formResult)) then
             coreRoutine(formResult)
             SV:showMessageBox(SV:T("End of Growling"), SV:T("Successful!!"))
         end
@@ -144,6 +152,17 @@ function makeForm()
     return form
 end
 
+-- validation form's value
+function formValidation(formResult)
+    if formResult.answers.startPos >= formResult.answers.endPos then
+       SV:showMessageBox(SV:T("Invalid Value"), SV:T("Start Position is bigger than End Position"))
+       return false
+    end
+
+    return true
+end
+
+-- preprocess data and run growl function
 function coreRoutine(formResult)
     local dataObject = getDataObject()
     for index = 1, #dataObject.notes, 1 do
@@ -169,7 +188,7 @@ end
 -- Create duration corresponding to 1% unit
 function makeDurationUnitBasedPercent(note)
     local totalDuration = note:getDuration()
-    return totalDuration / 100;
+    return totalDuration / 100
 end
 
 -- Calculate start position
@@ -194,7 +213,7 @@ end
 
 -- Calculate actual duration
 function makeActualDuration(sPos, ePos)
-    return ePos, sPos
+    return ePos - sPos
 end
 
 -- Returns an array of positions to modify the pitch.
